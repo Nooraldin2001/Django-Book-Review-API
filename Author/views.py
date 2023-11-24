@@ -2,46 +2,52 @@ from django.shortcuts import render
 
 # Create your views here.
 
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.shortcuts import render, get_object_or_404
-from .models import Book, Author
+"""
+    here we use this file of views if we would make a fronend website 
+    but in this project case we gonna only build api's 
+"""
 
-def book_list(request):
-    all_books = Book.objects.all()
-    books_count = all_books.count()
+# from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+# from django.shortcuts import render, get_object_or_404
+# from .models import Book, Author
 
-    page = request.GET.get('page', 1)
 
-    paginator = Paginator(all_books, 50)
-    try:
-        all_books = paginator.page(page)
-    except PageNotAnInteger:
-        all_books = paginator.page(1)
-    except EmptyPage:
-        all_books = paginator.page(paginator.num_pages)
+# def book_list(request):
+#     all_books = Book.objects.all()
+#     books_count = all_books.count()
 
-    return render(request, 'book/book_list.html', {'books': all_books, 'books_count': books_count})
+#     page = request.GET.get('page', 1)
 
-def book_detail(request, id):
-    book = get_object_or_404(Book, id=id)
-    return render(request, 'book/book_detail.html', {'book': book})
+#     paginator = Paginator(all_books, 50)
+#     try:
+#         all_books = paginator.page(page)
+#     except PageNotAnInteger:
+#         all_books = paginator.page(1)
+#     except EmptyPage:
+#         all_books = paginator.page(paginator.num_pages)
 
-def author_list(request):
-    all_authors = Author.objects.all()
-    authors_count = all_authors.count()
+#     return render(request, 'book/book_list.html', {'books': all_books, 'books_count': books_count})
 
-    page = request.GET.get('page', 1)
+# def book_detail(request, id):
+#     book = get_object_or_404(Book, id=id)
+#     return render(request, 'book/book_detail.html', {'book': book})
 
-    paginator = Paginator(all_authors, 50)
-    try:
-        all_authors = paginator.page(page)
-    except PageNotAnInteger:
-        all_authors = paginator.page(1)
-    except EmptyPage:
-        all_authors = paginator.page(paginator.num_pages)
+# def author_list(request):
+#     all_authors = Author.objects.all()
+#     authors_count = all_authors.count()
 
-    return render(request, 'author/author_list.html', {'authors': all_authors, 'authors_count': authors_count})
+#     page = request.GET.get('page', 1)
 
-def author_detail(request, id):
-    author = get_object_or_404(Author, id=id)
-    return render(request, 'author/author_detail.html', {'author': author})
+#     paginator = Paginator(all_authors, 50)
+#     try:
+#         all_authors = paginator.page(page)
+#     except PageNotAnInteger:
+#         all_authors = paginator.page(1)
+#     except EmptyPage:
+#         all_authors = paginator.page(paginator.num_pages)
+
+#     return render(request, 'author/author_list.html', {'authors': all_authors, 'authors_count': authors_count})
+
+# def author_detail(request, id):
+#     author = get_object_or_404(Author, id=id)
+#     return render(request, 'author/author_detail.html', {'author': author})
